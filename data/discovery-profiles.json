@@ -1,0 +1,2433 @@
+{
+  "schema_version": 1,
+  "scope": "已编制业务场景；规则与词组匹配，不是通用语义模型",
+  "profiles": [
+    {
+      "id": "scenario-node-workflow",
+      "title": "把几个处理步骤拖动连起来",
+      "questions": [
+        "只画流程还是需要真正执行？",
+        "步骤由谁配置，失败后怎样处理？"
+      ],
+      "dataflow": [
+        "节点编辑",
+        "结构校验",
+        "流程存储",
+        "可选执行器",
+        "状态回读"
+      ],
+      "acceptance": [
+        "节点与连线可保存恢复",
+        "执行语义与画布分开验证"
+      ],
+      "match_groups": [
+        [
+          "拖来拖去",
+          "搭积木",
+          "拖拽",
+          "拖动",
+          "节点",
+          "连线",
+          "drag"
+        ],
+        [
+          "步骤",
+          "流程",
+          "连起来",
+          "接起来",
+          "串起来",
+          "workflow"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-agent-orchestration",
+        "cap-domain-editors-collaboration"
+      ],
+      "technologies": [
+        "tech-react-flow",
+        "tech-n8n",
+        "tech-langgraph"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {
+        "tech-react-flow": "画布与节点连线 UI；不是执行器",
+        "tech-n8n": "业务连接与自动化执行候选",
+        "tech-langgraph": "有状态 Agent 执行候选"
+      },
+      "composition_rule": "先明确只画流程还是执行流程；画布与执行器是不同职责，执行器之间另作比较。"
+    },
+    {
+      "id": "scenario-collaborative-doc",
+      "title": "多人一起修改同一份文档",
+      "questions": [
+        "要保存哪些文档格式？",
+        "是否需要断网编辑和冲突合并？"
+      ],
+      "dataflow": [
+        "编辑器",
+        "共享文档状态",
+        "同步与存储",
+        "权限与历史"
+      ],
+      "acceptance": [
+        "并发改动不静默丢失",
+        "重连和权限边界可验证"
+      ],
+      "match_groups": [
+        [
+          "几个人",
+          "多人",
+          "同时",
+          "一起",
+          "协同",
+          "协作",
+          "collaborative"
+        ],
+        [
+          "文档",
+          "改一份",
+          "修改",
+          "编辑",
+          "写",
+          "document"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-editors-collaboration"
+      ],
+      "technologies": [
+        "tech-yjs",
+        "tech-tiptap",
+        "tech-lexical"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {
+        "tech-yjs": "共享文档同步与合并",
+        "tech-tiptap": "富文本编辑器候选，与 Lexical 比较",
+        "tech-lexical": "富文本编辑器候选，与 Tiptap 比较"
+      },
+      "composition_rule": "先选一种编辑器；确有多人或离线合并需求再组合共享状态层，不同时引入两套编辑器。"
+    },
+    {
+      "id": "scenario-rag-answers",
+      "title": "从客户或公司资料回答并给出处",
+      "questions": [
+        "资料来自哪里，允许传到哪里？",
+        "哪些人能看哪些资料？"
+      ],
+      "dataflow": [
+        "资料接入",
+        "解析与权限",
+        "检索",
+        "回答",
+        "可回读引用"
+      ],
+      "acceptance": [
+        "引用能支持答案",
+        "无依据和越权问题得到正确处理"
+      ],
+      "match_groups": [
+        [
+          "资料",
+          "文档",
+          "知识库",
+          "客户材料",
+          "文件"
+        ],
+        [
+          "问一句",
+          "回答",
+          "问答",
+          "出处",
+          "引用",
+          "问它",
+          "提问"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-agent-orchestration",
+        "cap-domain-search"
+      ],
+      "technologies": [
+        "tech-llamaindex",
+        "tech-pgvector",
+        "tech-sentence-transformers"
+      ],
+      "template_ids": [
+        "template-requirements",
+        "template-cost-model",
+        "template-poc"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-template-video",
+      "title": "把内容批量做成视频",
+      "questions": [
+        "画面模板与素材是否已有授权？",
+        "目标时长、比例、数量与渲染设备是什么？"
+      ],
+      "dataflow": [
+        "结构化内容",
+        "画面模板",
+        "渲染",
+        "音视频封装",
+        "导出"
+      ],
+      "acceptance": [
+        "中文字体与音画同步正确",
+        "代表性输出可播放且内容可回读"
+      ],
+      "match_groups": [
+        [
+          "批量",
+          "一段",
+          "产品介绍",
+          "模板",
+          "生成",
+          "自动"
+        ],
+        [
+          "短视频",
+          "视频",
+          "动画",
+          "video"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-media-documents"
+      ],
+      "technologies": [
+        "tech-remotion",
+        "tech-ffmpeg"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-spreadsheet-analysis",
+      "title": "把多份表格合并成经营指标",
+      "questions": [
+        "源表字段和计算口径是否明确？",
+        "单人本地还是多人共享？"
+      ],
+      "dataflow": [
+        "文件",
+        "schema与质量校验",
+        "清洗合并",
+        "指标计算",
+        "查询与导出"
+      ],
+      "acceptance": [
+        "空白与零不混淆",
+        "关键指标与原表对照一致"
+      ],
+      "match_groups": [
+        [
+          "表格",
+          "Excel",
+          "excel",
+          "CSV",
+          "csv",
+          "工作簿"
+        ],
+        [
+          "合并",
+          "上传",
+          "分析",
+          "汇总",
+          "指标",
+          "计算",
+          "导入"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-analytics",
+        "cap-domain-persistence"
+      ],
+      "technologies": [
+        "tech-pandas",
+        "tech-duckdb",
+        "tech-polars"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-resource-scheduling",
+      "title": "安排机器和人员且时间不冲突",
+      "questions": [
+        "必须满足哪些硬约束？",
+        "优化目标、求解时间和无解处理是什么？"
+      ],
+      "dataflow": [
+        "订单与资源",
+        "约束模型",
+        "求解",
+        "独立约束校验",
+        "排程解释"
+      ],
+      "acceptance": [
+        "硬约束独立检查通过",
+        "无解和超时不伪装成最优"
+      ],
+      "match_groups": [
+        [
+          "机器",
+          "工人",
+          "人员",
+          "设备",
+          "排班",
+          "排产"
+        ],
+        [
+          "安排",
+          "不能撞",
+          "不冲突",
+          "约束",
+          "工序",
+          "调度",
+          "计划"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-prediction-optimization"
+      ],
+      "technologies": [
+        "tech-ortools"
+      ],
+      "template_ids": [
+        "template-poc",
+        "template-acceptance"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-interactive-3d",
+      "title": "旋转查看产品或空间场景",
+      "questions": [
+        "已有模型资产还是要制作？",
+        "仅展示还是有真实物理或业务模拟？"
+      ],
+      "dataflow": [
+        "资产制作与导出",
+        "场景加载",
+        "业务状态",
+        "交互与渲染"
+      ],
+      "acceptance": [
+        "目标设备操作与帧率满足要求",
+        "资产单位、体积和授权明确"
+      ],
+      "match_groups": [
+        [
+          "产品",
+          "模型",
+          "物体",
+          "场景",
+          "展厅",
+          "空间",
+          "3d",
+          "三维"
+        ],
+        [
+          "旋转",
+          "转动",
+          "拖动",
+          "交互",
+          "展示",
+          "查看",
+          "模拟"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-3d"
+      ],
+      "technologies": [
+        "tech-threejs",
+        "tech-babylonjs",
+        "tech-blender",
+        "tech-godot"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {
+        "tech-blender": "制作和导出模型资产",
+        "tech-threejs": "浏览器运行渲染候选",
+        "tech-babylonjs": "浏览器场景引擎候选",
+        "tech-godot": "独立场景运行路线候选"
+      },
+      "composition_rule": "资产制作与运行渲染分开；只选择适合目标平台的一种主要运行路线，仿真计算独立判断。",
+      "alternative_match_groups": [
+        [
+          [
+            "工厂",
+            "厂里",
+            "车间",
+            "设备",
+            "展厅",
+            "商店",
+            "房间"
+          ],
+          [
+            "走进去",
+            "逛一圈",
+            "像游戏",
+            "鸟瞰",
+            "画面里"
+          ]
+        ],
+        [
+          [
+            "产品",
+            "展品",
+            "商品",
+            "家具"
+          ],
+          [
+            "转一转",
+            "转着看",
+            "换颜色",
+            "换个颜色",
+            "从各个方向",
+            "放大看"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "scenario-metrics-dashboard",
+      "title": "查看趋势并点击筛选数据",
+      "questions": [
+        "指标口径与数据来源是什么？",
+        "刷新频率和最大数据量是什么？"
+      ],
+      "dataflow": [
+        "数据查询",
+        "口径与聚合",
+        "图表适配",
+        "筛选联动",
+        "刷新"
+      ],
+      "acceptance": [
+        "数值和时间口径正确",
+        "筛选与刷新不串数据"
+      ],
+      "match_groups": [
+        [
+          "趋势",
+          "折线",
+          "漏斗",
+          "桑基",
+          "指标",
+          "经营",
+          "数据"
+        ],
+        [
+          "图",
+          "大屏",
+          "看板",
+          "仪表盘",
+          "筛选",
+          "展示",
+          "监控"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-visualization"
+      ],
+      "technologies": [
+        "tech-echarts",
+        "tech-g2",
+        "tech-d3"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-business-forms",
+      "title": "建立填报与管理页面",
+      "questions": [
+        "哪些字段、规则和角色？",
+        "提交成功后在哪里回读？"
+      ],
+      "dataflow": [
+        "字段",
+        "校验",
+        "业务服务",
+        "事务存储",
+        "列表和结果回读"
+      ],
+      "acceptance": [
+        "重复提交与错误输入可处理",
+        "保存后重新读取一致"
+      ],
+      "match_groups": [
+        [
+          "填报",
+          "录入",
+          "表单",
+          "后台",
+          "管理页面"
+        ],
+        [
+          "提交",
+          "编辑",
+          "字段",
+          "审核",
+          "客户",
+          "订单",
+          "数据"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-design-system",
+        "cap-domain-forms-state",
+        "cap-domain-api"
+      ],
+      "technologies": [
+        "tech-antd",
+        "tech-mantine",
+        "tech-react-hook-form",
+        "tech-zod"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-data-grid",
+      "title": "处理很多行并排序分组的表格",
+      "questions": [
+        "哪些网格功能是必须且可付费？",
+        "服务端分页还是本地数据？"
+      ],
+      "dataflow": [
+        "查询协议",
+        "行模型与唯一ID",
+        "网格交互",
+        "编辑或导出"
+      ],
+      "acceptance": [
+        "排序筛选覆盖全部目标数据",
+        "编辑与导出符合业务口径"
+      ],
+      "match_groups": [
+        [
+          "表格",
+          "列表",
+          "数据网格"
+        ],
+        [
+          "很多行",
+          "排序",
+          "分组",
+          "筛选",
+          "固定列",
+          "导出",
+          "编辑单元格"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-forms-state"
+      ],
+      "technologies": [
+        "tech-ag-grid",
+        "tech-tanstack-table",
+        "tech-antd"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-rich-editor",
+      "title": "在网页里写带格式的文档",
+      "questions": [
+        "需保存和导出什么文档格式？",
+        "是否需要多人协作？"
+      ],
+      "dataflow": [
+        "文档schema",
+        "编辑状态",
+        "持久化",
+        "导入导出"
+      ],
+      "acceptance": [
+        "粘贴撤销与中文输入正常",
+        "格式往返不丢关键内容"
+      ],
+      "match_groups": [
+        [
+          "网页",
+          "页面",
+          "在线",
+          "浏览器",
+          "编辑器"
+        ],
+        [
+          "富文本",
+          "带格式",
+          "排版",
+          "文档",
+          "工具栏",
+          "写文章"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-editors-collaboration"
+      ],
+      "technologies": [
+        "tech-tiptap",
+        "tech-lexical"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-code-editor",
+      "title": "在页面中编辑代码或脚本",
+      "questions": [
+        "只是编辑还是要执行代码？",
+        "支持哪些语言与设备？"
+      ],
+      "dataflow": [
+        "编辑文本",
+        "语法服务",
+        "保存",
+        "独立受控执行层"
+      ],
+      "acceptance": [
+        "中文输入与大文件可用",
+        "代码执行权限与编辑器分离"
+      ],
+      "match_groups": [
+        [
+          "页面",
+          "网页",
+          "浏览器",
+          "在线"
+        ],
+        [
+          "代码",
+          "脚本",
+          "语法",
+          "IDE",
+          "代码编辑"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-editors-collaboration"
+      ],
+      "technologies": [
+        "tech-monaco",
+        "tech-codemirror"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-whiteboard",
+      "title": "自由画图并移动图形",
+      "questions": [
+        "自由绘图还是结构化流程图？",
+        "需要导出、多人编辑或历史吗？"
+      ],
+      "dataflow": [
+        "图形状态",
+        "画布交互",
+        "文档存储",
+        "可选协同"
+      ],
+      "acceptance": [
+        "图形和位置可恢复",
+        "中文与导出格式正确"
+      ],
+      "match_groups": [
+        [
+          "白板",
+          "画布",
+          "草图",
+          "手绘",
+          "画图",
+          "绘图"
+        ],
+        [
+          "拖动",
+          "自由",
+          "图形",
+          "协作",
+          "连线",
+          "绘制",
+          "画"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-editors-collaboration"
+      ],
+      "technologies": [
+        "tech-tldraw",
+        "tech-excalidraw"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-geo-map",
+      "title": "在地图上查看地点轨迹和区域",
+      "questions": [
+        "目标地区与坐标来源是什么？",
+        "地图数据、瓦片和地理编码由谁提供？"
+      ],
+      "dataflow": [
+        "地理数据",
+        "坐标校验",
+        "底图与图层",
+        "筛选交互"
+      ],
+      "acceptance": [
+        "点位和坐标正确",
+        "目标地区访问及数据许可明确"
+      ],
+      "match_groups": [
+        [
+          "地图",
+          "地理",
+          "区域",
+          "地点",
+          "坐标"
+        ],
+        [
+          "轨迹",
+          "标记",
+          "分布",
+          "物流",
+          "门店",
+          "查看",
+          "展示"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-geospatial"
+      ],
+      "technologies": [
+        "tech-maplibre",
+        "tech-deckgl"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-time-series-forecast",
+      "title": "估计未来销量需求与库存",
+      "questions": [
+        "历史跨度与预测粒度是什么？",
+        "预测时实际能获得哪些特征？"
+      ],
+      "dataflow": [
+        "历史数据",
+        "时间切分",
+        "简单基线",
+        "候选预测",
+        "回测"
+      ],
+      "acceptance": [
+        "无未来信息泄漏",
+        "同口径优于或解释未优于基线"
+      ],
+      "match_groups": [
+        [
+          "未来",
+          "预测",
+          "估计",
+          "下周",
+          "下月"
+        ],
+        [
+          "销量",
+          "需求",
+          "库存",
+          "销售",
+          "时间序列"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-prediction-optimization"
+      ],
+      "technologies": [
+        "tech-chronos",
+        "tech-lightgbm",
+        "tech-scikit-learn"
+      ],
+      "template_ids": [
+        "template-poc",
+        "template-acceptance"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-business-automation",
+      "title": "定时连接业务系统完成动作",
+      "questions": [
+        "有哪些系统与 API 权限？",
+        "允许自动执行哪些外部动作？"
+      ],
+      "dataflow": [
+        "触发",
+        "输入校验",
+        "系统连接",
+        "动作",
+        "结果回读"
+      ],
+      "acceptance": [
+        "重复触发不重复产生关键动作",
+        "失败可追踪与恢复"
+      ],
+      "match_groups": [
+        [
+          "每天",
+          "定时",
+          "自动",
+          "触发"
+        ],
+        [
+          "通知",
+          "邮件",
+          "同步",
+          "表单",
+          "审批",
+          "导入",
+          "处理步骤"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-async-workflows"
+      ],
+      "technologies": [
+        "tech-n8n",
+        "tech-temporal"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-durable-process",
+      "title": "长时间流程失败后继续执行",
+      "questions": [
+        "需要保留哪些状态和人工节点？",
+        "外部动作如何幂等和补偿？"
+      ],
+      "dataflow": [
+        "状态机",
+        "持久化执行",
+        "Worker",
+        "恢复与补偿",
+        "审计"
+      ],
+      "acceptance": [
+        "故障后从正确位置恢复",
+        "重复执行与版本升级可控"
+      ],
+      "match_groups": [
+        [
+          "流程",
+          "任务",
+          "订单",
+          "步骤"
+        ],
+        [
+          "几天",
+          "长时间",
+          "断点",
+          "恢复",
+          "继续执行",
+          "跨服务"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-async-workflows"
+      ],
+      "technologies": [
+        "tech-temporal",
+        "tech-langgraph"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-background-jobs",
+      "title": "把耗时处理放到后台",
+      "questions": [
+        "现有后端语言和队列是什么？",
+        "任务时限、幂等和结果保留要求是什么？"
+      ],
+      "dataflow": [
+        "请求",
+        "任务记录",
+        "队列与Worker",
+        "结果",
+        "进度查询"
+      ],
+      "acceptance": [
+        "请求不被重计算阻塞",
+        "失败、重试和完成状态可回读"
+      ],
+      "match_groups": [
+        [
+          "耗时",
+          "大文件",
+          "任务",
+          "处理"
+        ],
+        [
+          "后台",
+          "排队",
+          "异步",
+          "不阻塞",
+          "重试",
+          "进度"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-async-workflows"
+      ],
+      "technologies": [
+        "tech-celery",
+        "tech-bullmq",
+        "tech-rabbitmq"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-text-search",
+      "title": "按编号、字段或关键词查找",
+      "questions": [
+        "核心是精确编号/字段筛选，还是文本相关性与目录体验？",
+        "数据更新、删除和权限撤销怎样对搜索生效？"
+      ],
+      "dataflow": [
+        "主库",
+        "索引同步",
+        "查询与过滤",
+        "排序",
+        "结果"
+      ],
+      "acceptance": [
+        "真实查询相关性达到标准",
+        "删除和权限及时生效"
+      ],
+      "match_groups": [
+        [
+          "搜索",
+          "查找",
+          "查资料",
+          "搜到"
+        ],
+        [
+          "关键词",
+          "产品",
+          "目录",
+          "文档",
+          "中文",
+          "全文"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-search"
+      ],
+      "technologies": [
+        "tech-meilisearch",
+        "tech-elasticsearch",
+        "tech-opensearch",
+        "tech-postgresql"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow",
+        "template-search-quality"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {
+        "tech-postgresql": "精确记录和现有全文基线优先复用；不是自动要求迁库。",
+        "tech-meilisearch": "目录检索候选，实际模式与产品配置另核。",
+        "tech-elasticsearch": "复杂检索/聚合或现有体系复用候选。",
+        "tech-opensearch": "同职责候选，版本和部署边界独立核查。"
+      },
+      "composition_rule": "先选业务查询方法并复用现有系统，再按缺口选引擎；身份过滤、主库到索引同步、删除与回读是独立责任。候选不是全部必装。",
+      "alternative_match_groups": [
+        [
+          [
+            "客户编号",
+            "订单号",
+            "产品编码",
+            "姓名"
+          ],
+          [
+            "查",
+            "找",
+            "搜"
+          ]
+        ]
+      ]
+    },
+    {
+      "id": "scenario-semantic-search",
+      "title": "表达不同也能找到同一意思",
+      "questions": [
+        "关键词检索为何不够？",
+        "有可标注查询、过滤和领域要求吗？"
+      ],
+      "dataflow": [
+        "文本",
+        "嵌入",
+        "向量索引",
+        "权限过滤",
+        "检索评估"
+      ],
+      "acceptance": [
+        "与关键词基线比较召回",
+        "换模型与删除后索引可重建"
+      ],
+      "match_groups": [
+        [
+          "意思",
+          "语义",
+          "相似",
+          "同义",
+          "换个说法"
+        ],
+        [
+          "找",
+          "搜",
+          "检索",
+          "资料",
+          "匹配"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-search",
+        "cap-domain-model-serving"
+      ],
+      "technologies": [
+        "tech-pgvector",
+        "tech-qdrant",
+        "tech-sentence-transformers"
+      ],
+      "template_ids": [
+        "template-requirements",
+        "template-cost-model",
+        "template-poc",
+        "template-search-quality"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先选业务查询方法并复用现有系统，再按缺口选引擎；身份过滤、主库到索引同步、删除与回读是独立责任。候选不是全部必装。"
+    },
+    {
+      "id": "scenario-graph-relations",
+      "title": "沿复杂关系寻找路径",
+      "questions": [
+        "典型查询路径是什么？",
+        "关系表和索引为什么不能满足？"
+      ],
+      "dataflow": [
+        "实体与关系",
+        "存储建模",
+        "路径查询",
+        "解释"
+      ],
+      "acceptance": [
+        "关键路径查询准确",
+        "同数据比较关系库方案"
+      ],
+      "match_groups": [
+        [
+          "关系",
+          "实体",
+          "客户",
+          "企业",
+          "知识图谱"
+        ],
+        [
+          "几层",
+          "多跳",
+          "路径",
+          "关联查询",
+          "找关系"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-search"
+      ],
+      "technologies": [
+        "tech-neo4j",
+        "tech-postgresql"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow",
+        "template-search-quality"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先选业务查询方法并复用现有系统，再按缺口选引擎；身份过滤、主库到索引同步、删除与回读是独立责任。候选不是全部必装。"
+    },
+    {
+      "id": "scenario-identity-access",
+      "title": "登录并限制谁能操作",
+      "questions": [
+        "现有身份系统是什么？",
+        "权限需要到对象、字段还是文件？"
+      ],
+      "dataflow": [
+        "身份认证",
+        "会话",
+        "对象授权",
+        "操作",
+        "审计"
+      ],
+      "acceptance": [
+        "直接API越权被拒绝",
+        "退出、角色变化与令牌生效"
+      ],
+      "match_groups": [
+        [
+          "登录",
+          "账号",
+          "认证",
+          "身份"
+        ],
+        [
+          "权限",
+          "角色",
+          "限制",
+          "看不到",
+          "能操作",
+          "访问"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-identity-platform"
+      ],
+      "technologies": [
+        "tech-keycloak",
+        "tech-supabase"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-multi-tenant",
+      "title": "不同公司只能看到自己的资料",
+      "questions": [
+        "租户从哪里确定？",
+        "数据库、文件、缓存与检索如何隔离？"
+      ],
+      "dataflow": [
+        "可信身份与租户",
+        "对象策略",
+        "读写过滤",
+        "跨层审计"
+      ],
+      "acceptance": [
+        "跨租户直接请求被拒绝",
+        "缓存文件与搜索不串资料"
+      ],
+      "match_groups": [
+        [
+          "不同公司",
+          "不同企业",
+          "多家",
+          "各家公司",
+          "租户"
+        ],
+        [
+          "各自",
+          "隔离",
+          "自己的",
+          "不能看到",
+          "权限"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-identity-platform",
+        "cap-domain-persistence"
+      ],
+      "technologies": [
+        "tech-supabase",
+        "tech-postgresql",
+        "tech-keycloak"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {
+        "tech-supabase": "后端平台与 RLS 等能力候选",
+        "tech-postgresql": "业务存储和隔离策略基础",
+        "tech-keycloak": "身份服务，不代替对象授权"
+      },
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-file-library",
+      "title": "上传管理文件并授权下载",
+      "questions": [
+        "文件大小、地区和访问范围是什么？",
+        "已有对象存储能否复用？"
+      ],
+      "dataflow": [
+        "上传校验",
+        "文件存储",
+        "元数据",
+        "权限下载",
+        "删除与备份"
+      ],
+      "acceptance": [
+        "未授权下载被拒绝",
+        "大文件与恢复可验证"
+      ],
+      "match_groups": [
+        [
+          "文件",
+          "附件",
+          "图片",
+          "资料"
+        ],
+        [
+          "上传",
+          "下载",
+          "存储",
+          "文件库",
+          "文件夹",
+          "签名链接"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-persistence",
+        "cap-domain-identity-platform"
+      ],
+      "technologies": [
+        "tech-supabase",
+        "tech-minio"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {
+        "tech-supabase": "包含存储与访问能力的平台候选",
+        "tech-minio": "历史对象存储路线；维护终止警示必须保留"
+      },
+      "composition_rule": "先复用现有平台存储；维护终止的历史仓库不能作为默认推荐。"
+    },
+    {
+      "id": "scenario-image-batch",
+      "title": "批量裁剪合成处理图片",
+      "questions": [
+        "只是几何处理还是视觉识别？",
+        "素材、字体和输出规格是什么？"
+      ],
+      "dataflow": [
+        "原图",
+        "方向与色彩校验",
+        "处理模板",
+        "输出"
+      ],
+      "acceptance": [
+        "透明度、方向、中文字体正确",
+        "大图内存与格式可用"
+      ],
+      "match_groups": [
+        [
+          "图片",
+          "照片",
+          "图像"
+        ],
+        [
+          "批量",
+          "裁剪",
+          "缩放",
+          "加字",
+          "水印",
+          "合成",
+          "透明"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-media-documents"
+      ],
+      "technologies": [
+        "tech-pillow",
+        "tech-opencv"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-media-transcode",
+      "title": "转换剪切音视频文件",
+      "questions": [
+        "目标播放器与编码是什么？",
+        "是否涉及受限编解码器与授权素材？"
+      ],
+      "dataflow": [
+        "媒体探测",
+        "处理参数",
+        "转码与封装",
+        "播放检查"
+      ],
+      "acceptance": [
+        "音画同步和时长正确",
+        "目标设备可播放"
+      ],
+      "match_groups": [
+        [
+          "视频",
+          "音频",
+          "录音",
+          "媒体"
+        ],
+        [
+          "转码",
+          "格式转换",
+          "剪切",
+          "合并",
+          "压缩",
+          "字幕",
+          "提取"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-media-documents"
+      ],
+      "technologies": [
+        "tech-ffmpeg"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-pdf-documents",
+      "title": "自动生成正式文档与PDF",
+      "questions": [
+        "是否要求原生 Word 可编辑？",
+        "字体、表格、页眉和分页规范是什么？"
+      ],
+      "dataflow": [
+        "结构化内容",
+        "模板",
+        "排版与转换",
+        "渲染检查"
+      ],
+      "acceptance": [
+        "中文表格分页正确",
+        "导出内容完整且可回读"
+      ],
+      "match_groups": [
+        [
+          "文档",
+          "报告",
+          "合同",
+          "PDF",
+          "pdf"
+        ],
+        [
+          "生成",
+          "导出",
+          "排版",
+          "分页",
+          "打印",
+          "转换"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-media-documents"
+      ],
+      "technologies": [
+        "tech-typst",
+        "tech-pandoc"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-mobile-app",
+      "title": "给手机安装并使用设备能力",
+      "questions": [
+        "网页能否满足使用需求？",
+        "必需设备能力与发布渠道是什么？"
+      ],
+      "dataflow": [
+        "用户流程",
+        "跨端UI",
+        "原生模块",
+        "权限",
+        "构建分发"
+      ],
+      "acceptance": [
+        "真实目标设备流程通过",
+        "平台权限与插件行为明确"
+      ],
+      "match_groups": [
+        [
+          "手机",
+          "移动端",
+          "iOS",
+          "Android"
+        ],
+        [
+          "应用",
+          "安装",
+          "拍照",
+          "定位",
+          "原生",
+          "App",
+          "app"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-native-apps"
+      ],
+      "technologies": [
+        "tech-react-native",
+        "tech-expo",
+        "tech-flutter"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-desktop-app",
+      "title": "桌面安装并操作本地文件",
+      "questions": [
+        "是否必须安装还是浏览器即可？",
+        "本地文件、签名和更新要求是什么？"
+      ],
+      "dataflow": [
+        "Web界面",
+        "进程或原生桥",
+        "系统权限",
+        "打包与更新"
+      ],
+      "acceptance": [
+        "系统权限和文件操作正确",
+        "目标系统安装与更新可验证"
+      ],
+      "match_groups": [
+        [
+          "电脑",
+          "桌面",
+          "macOS",
+          "Windows",
+          "Mac"
+        ],
+        [
+          "安装",
+          "应用",
+          "本地文件",
+          "离线",
+          "客户端"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-native-apps"
+      ],
+      "technologies": [
+        "tech-tauri",
+        "tech-electron"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-content-site",
+      "title": "建立内容网站与产品介绍页",
+      "questions": [
+        "内容如何维护？",
+        "是否需要服务端渲染、登录或大量交互？"
+      ],
+      "dataflow": [
+        "内容",
+        "页面模板",
+        "构建或渲染",
+        "托管"
+      ],
+      "acceptance": [
+        "链接和内容更新可用",
+        "目标设备与首屏符合要求"
+      ],
+      "match_groups": [
+        [
+          "文章",
+          "博客",
+          "内容",
+          "介绍页",
+          "官网",
+          "作品集"
+        ],
+        [
+          "网站",
+          "页面",
+          "展示",
+          "发布",
+          "搜索引擎"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-web"
+      ],
+      "technologies": [
+        "tech-astro",
+        "tech-nextjs",
+        "tech-nuxt"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-api-backend",
+      "title": "让系统通过接口交换业务数据",
+      "questions": [
+        "现有语言和部署环境是什么？",
+        "同步接口还是长任务？"
+      ],
+      "dataflow": [
+        "输入契约",
+        "认证校验",
+        "业务规则",
+        "存储",
+        "响应"
+      ],
+      "acceptance": [
+        "错误与对象权限正确",
+        "关键事务和超时可验证"
+      ],
+      "match_groups": [
+        [
+          "接口",
+          "API",
+          "api",
+          "后端"
+        ],
+        [
+          "调用",
+          "数据",
+          "服务",
+          "对接",
+          "业务",
+          "请求"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-api"
+      ],
+      "technologies": [
+        "tech-fastapi",
+        "tech-nestjs",
+        "tech-express",
+        "tech-hono"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {
+        "tech-fastapi": "Python 服务端候选",
+        "tech-nestjs": "有模块约定的 TypeScript 服务端候选",
+        "tech-express": "轻量 Node 服务端候选",
+        "tech-hono": "需核查目标运行时的 Web 服务候选"
+      },
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-local-offline",
+      "title": "断网也能填写与保存",
+      "questions": [
+        "是否只在一台设备？",
+        "联网后是否需要合并多人修改？"
+      ],
+      "dataflow": [
+        "本地状态",
+        "持久化",
+        "可选同步与冲突处理",
+        "恢复"
+      ],
+      "acceptance": [
+        "刷新与重启不丢数据",
+        "联网冲突与导出备份明确"
+      ],
+      "match_groups": [
+        [
+          "断网",
+          "离线",
+          "没网络",
+          "无网络",
+          "本地"
+        ],
+        [
+          "填写",
+          "保存",
+          "使用",
+          "继续写",
+          "同步",
+          "工作",
+          "接着写"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-persistence",
+        "cap-domain-native-apps"
+      ],
+      "technologies": [
+        "tech-sqlite",
+        "tech-yjs"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {
+        "tech-sqlite": "本地持久化候选；浏览器不能不经适配直接使用系统 SQLite",
+        "tech-yjs": "需要并发/离线合并时的共享状态候选"
+      },
+      "composition_rule": "先确认浏览器、桌面还是移动；浏览器可评估原生 IndexedDB，当前目录不是原生能力白名单。"
+    },
+    {
+      "id": "scenario-database-persistence",
+      "title": "保存记录并能查询修改",
+      "questions": [
+        "关系、约束和并发写要求是什么？",
+        "现有数据库和恢复目标是什么？"
+      ],
+      "dataflow": [
+        "业务数据",
+        "schema与约束",
+        "事务",
+        "查询",
+        "备份恢复"
+      ],
+      "acceptance": [
+        "关键约束与事务正确",
+        "备份可恢复"
+      ],
+      "match_groups": [
+        [
+          "记录",
+          "订单",
+          "客户",
+          "数据"
+        ],
+        [
+          "保存",
+          "持久化",
+          "查询",
+          "修改",
+          "事务",
+          "数据库"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-persistence",
+        "cap-domain-data-access"
+      ],
+      "technologies": [
+        "tech-postgresql",
+        "tech-sqlite",
+        "tech-mongodb"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-release-deploy",
+      "title": "把应用部署并可更新回退",
+      "questions": [
+        "目标平台、地区和网络是什么？",
+        "运行、秘密、持久存储和发布授权是什么？"
+      ],
+      "dataflow": [
+        "构建",
+        "配置与秘密",
+        "目标运行",
+        "健康检查",
+        "回退"
+      ],
+      "acceptance": [
+        "真实入口可用",
+        "更新、数据与回退可验证"
+      ],
+      "match_groups": [
+        [
+          "应用",
+          "软件",
+          "服务",
+          "系统",
+          "网站"
+        ],
+        [
+          "部署",
+          "上线",
+          "发布",
+          "服务器",
+          "更新回退"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-infrastructure"
+      ],
+      "technologies": [
+        "tech-docker",
+        "tech-caddy",
+        "tech-github-actions"
+      ],
+      "template_ids": [
+        "template-compatibility",
+        "template-migration"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-error-observability",
+      "title": "知道哪里报错和为什么变慢",
+      "questions": [
+        "要回答错误细节、趋势还是跨服务路径？",
+        "敏感字段与保留期限是什么？"
+      ],
+      "dataflow": [
+        "运行信号",
+        "采集脱敏",
+        "存储查询",
+        "告警",
+        "定位"
+      ],
+      "acceptance": [
+        "关键故障能被发现和定位",
+        "敏感数据和成本可控"
+      ],
+      "match_groups": [
+        [
+          "报错",
+          "错误",
+          "故障",
+          "变慢",
+          "延迟"
+        ],
+        [
+          "发现",
+          "监控",
+          "定位",
+          "排查",
+          "追踪",
+          "告警"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-observability"
+      ],
+      "technologies": [
+        "tech-sentry",
+        "tech-otel",
+        "tech-prometheus",
+        "tech-grafana"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-automated-testing",
+      "title": "自动操作页面验证业务",
+      "questions": [
+        "最关键的用户任务与回读证据是什么？",
+        "哪些失败会实质影响交付？"
+      ],
+      "dataflow": [
+        "场景与数据",
+        "动作或函数",
+        "业务断言",
+        "证据"
+      ],
+      "acceptance": [
+        "关键成功和失败行为可观察",
+        "不以截图代替结果"
+      ],
+      "match_groups": [
+        [
+          "测试",
+          "验证",
+          "检查",
+          "回归"
+        ],
+        [
+          "页面",
+          "浏览器",
+          "功能",
+          "程序",
+          "软件",
+          "界面",
+          "回归",
+          "测试"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-testing"
+      ],
+      "technologies": [
+        "tech-playwright",
+        "tech-vitest"
+      ],
+      "template_ids": [
+        "template-poc",
+        "template-acceptance"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-load-testing",
+      "title": "知道多少人同时用会卡",
+      "questions": [
+        "获授权的测试环境是什么？",
+        "代表性负载和延迟错误率目标是什么？"
+      ],
+      "dataflow": [
+        "工作负载",
+        "施压",
+        "服务指标",
+        "容量与瓶颈解释"
+      ],
+      "acceptance": [
+        "负载可复现且数据安全",
+        "不把单次压测当永久保证"
+      ],
+      "match_groups": [
+        [
+          "多少人",
+          "并发",
+          "压力",
+          "很多人",
+          "大量请求"
+        ],
+        [
+          "同时",
+          "卡",
+          "容量",
+          "测试",
+          "性能",
+          "承受"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-testing",
+        "cap-domain-observability"
+      ],
+      "technologies": [
+        "tech-k6",
+        "tech-prometheus"
+      ],
+      "template_ids": [
+        "template-poc",
+        "template-acceptance"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-accessibility",
+      "title": "让键盘和读屏也能使用",
+      "questions": [
+        "关键用户流程与目标辅助工具是什么？",
+        "是否有明确适用标准？"
+      ],
+      "dataflow": [
+        "语义组件",
+        "键盘焦点",
+        "自动检测",
+        "人工读屏"
+      ],
+      "acceptance": [
+        "关键任务可完成",
+        "自动检查不能代替人工验证"
+      ],
+      "match_groups": [
+        [
+          "键盘",
+          "读屏",
+          "屏幕阅读器",
+          "无障碍",
+          "残障"
+        ],
+        [
+          "使用",
+          "操作",
+          "检查",
+          "支持",
+          "访问"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-testing",
+        "cap-domain-design-system"
+      ],
+      "technologies": [
+        "tech-axe-core",
+        "tech-radix"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-ai-evaluation",
+      "title": "比较AI回答和工具行为",
+      "questions": [
+        "人工标准和代表性样本是什么？",
+        "正确性、成本、引用与工具动作如何分别评判？"
+      ],
+      "dataflow": [
+        "样本与标签",
+        "任务执行",
+        "断言与判分",
+        "失败分析"
+      ],
+      "acceptance": [
+        "人工与自动标准校准",
+        "结果可复现且费用明确"
+      ],
+      "match_groups": [
+        [
+          "AI",
+          "ai",
+          "模型",
+          "智能体",
+          "回答"
+        ],
+        [
+          "评估",
+          "比较",
+          "质量",
+          "准确",
+          "幻觉",
+          "回归"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-ai-evaluation"
+      ],
+      "technologies": [
+        "tech-promptfoo",
+        "tech-ragas",
+        "tech-langsmith"
+      ],
+      "template_ids": [
+        "template-poc",
+        "template-acceptance"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-local-model",
+      "title": "把模型放在自己的电脑或服务器",
+      "questions": [
+        "硬件、内存和模型许可是什么？",
+        "数据边界与并发需求是什么？"
+      ],
+      "dataflow": [
+        "模型与权重",
+        "运行引擎",
+        "受控接口",
+        "任务评估"
+      ],
+      "acceptance": [
+        "具体硬件支持并测量资源",
+        "工具与权重许可分开"
+      ],
+      "match_groups": [
+        [
+          "模型",
+          "大模型",
+          "AI",
+          "ai"
+        ],
+        [
+          "本地",
+          "自己电脑",
+          "不出本机",
+          "私有",
+          "自建",
+          "服务器推理"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-model-serving"
+      ],
+      "technologies": [
+        "tech-ollama",
+        "tech-vllm",
+        "tech-transformers"
+      ],
+      "template_ids": [
+        "template-requirements",
+        "template-cost-model",
+        "template-poc"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-data-pipelines",
+      "title": "从多个系统定时整理数据",
+      "questions": [
+        "源系统权限、数据口径和更新频率是什么？",
+        "增量、删除和补数怎样处理？"
+      ],
+      "dataflow": [
+        "采集",
+        "校验",
+        "转换模型",
+        "调度",
+        "血缘与数据质量"
+      ],
+      "acceptance": [
+        "增量和补数不重复",
+        "源变化可追踪且口径一致"
+      ],
+      "match_groups": [
+        [
+          "多个系统",
+          "数据源",
+          "数据管道",
+          "仓库"
+        ],
+        [
+          "定时",
+          "同步",
+          "清洗",
+          "汇总",
+          "转换",
+          "补数"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-analytics",
+        "cap-domain-async-workflows"
+      ],
+      "technologies": [
+        "tech-dbt",
+        "tech-airflow",
+        "tech-duckdb"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-realtime-status",
+      "title": "不用刷新就看到状态变化",
+      "questions": [
+        "允许多大延迟，是否双向？",
+        "断线、鉴权和代理限制是什么？"
+      ],
+      "dataflow": [
+        "后端状态",
+        "轮询或SSE/WebSocket",
+        "客户端重连",
+        "一致性"
+      ],
+      "acceptance": [
+        "断线后状态可恢复",
+        "不因实时一词强制引入双向连接"
+      ],
+      "match_groups": [
+        [
+          "状态",
+          "消息",
+          "进度",
+          "数据"
+        ],
+        [
+          "不用刷新",
+          "实时更新",
+          "即时",
+          "推送",
+          "双向"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-api",
+        "cap-domain-async-workflows"
+      ],
+      "technologies": [
+        "tech-fastapi",
+        "tech-nestjs"
+      ],
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {
+        "tech-fastapi": "Python 服务端接口载体，不是推送协议本身",
+        "tech-nestjs": "TypeScript 服务端接口载体，不是推送协议本身"
+      },
+      "composition_rule": "先比较轮询、SSE 与 WebSocket；通常复用现有后端，不为推送新增整套服务框架。"
+    },
+    {
+      "id": "scenario-human-approval",
+      "title": "自动流程中由人确认关键动作",
+      "questions": [
+        "谁能审批什么，授权边界在哪里？",
+        "超时、撤销和重复审批怎样处理？"
+      ],
+      "dataflow": [
+        "草稿或工具计划",
+        "授权审核",
+        "受控动作",
+        "结果与审计"
+      ],
+      "acceptance": [
+        "未批准动作不执行",
+        "批准后可回读且重复请求幂等"
+      ],
+      "match_groups": [
+        [
+          "人",
+          "人工",
+          "负责人",
+          "审批人"
+        ],
+        [
+          "确认",
+          "审批",
+          "审核",
+          "批准",
+          "介入"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-agent-orchestration",
+        "cap-domain-async-workflows"
+      ],
+      "technologies": [
+        "tech-langgraph",
+        "tech-n8n",
+        "tech-temporal"
+      ],
+      "template_ids": [
+        "template-requirements",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先检查当前项目相关实现、依赖和平台能力；现有方案够用时复用，不因匹配到场景就新增框架。",
+      "decision_boundary": "这里列的是条件性候选和职责，不是已经选定的技术栈；目标版本、许可与部署适配仍需核查。",
+      "technology_roles": {},
+      "composition_rule": "先复用当前栈；对同职责候选作比较，对跨职责组件明确接口。列表不是全部要安装的技术栈。"
+    },
+    {
+      "id": "scenario-business-twin",
+      "title": "把企业或设备状态映射到可交互的业务对象",
+      "match_groups": [
+        [
+          "数字孪生"
+        ]
+      ],
+      "alternative_match_groups": [
+        [
+          [
+            "设备",
+            "机器",
+            "产线"
+          ],
+          [
+            "故障",
+            "报警",
+            "运行状态",
+            "停机状态"
+          ]
+        ]
+      ],
+      "questions": [
+        "先解决哪个业务问题：设备故障、生产进度，还是经营关系？",
+        "画面中的状态来自现有系统、人工录入，还是演示数据？"
+      ],
+      "dataflow": [
+        "明确对象与标识",
+        "读取并校验状态来源",
+        "对象与状态关联",
+        "交互视图与证据回读"
+      ],
+      "acceptance": [
+        "画面对象能定位到对应状态来源和时间",
+        "资料不足和离线状态明确呈现，不伪装为实时",
+        "是否需要三维或仿真由实际任务决定"
+      ],
+      "capabilities": [
+        "cap-domain-product",
+        "cap-domain-api",
+        "cap-domain-visualization"
+      ],
+      "technologies": [
+        "tech-fastapi",
+        "tech-echarts"
+      ],
+      "technology_roles": {
+        "tech-fastapi": "需要服务端接口时的候选；优先复用已有后端",
+        "tech-echarts": "二维状态和指标表达候选；不负责数据采集"
+      },
+      "template_ids": [
+        "template-selection-brief",
+        "template-architecture-dataflow"
+      ],
+      "reuse_first": "先核实当前系统的业务对象、状态接口和已有视图。",
+      "decision_boundary": "数字孪生不自动等于三维；业务对象、数据时效和交互目标确定后才能定栈。",
+      "composition_rule": "业务状态与展示解耦；明确空间交互需求时再组合三维资产与运行路径，仿真单独评估。"
+    },
+    {
+      "id": "scenario-document-extraction",
+      "title": "从合同票据提取字段并人工确认入库",
+      "questions": [
+        "原件主要是可选中文字的文件，还是扫描/拍照？",
+        "需要提取哪些字段，哪些必须由同事确认才能保存？"
+      ],
+      "dataflow": [
+        "原件与权限",
+        "文字/版面提取",
+        "字段候选及来源",
+        "业务校验",
+        "人工确认",
+        "幂等保存与回读"
+      ],
+      "acceptance": [
+        "金额日期缺失与歧义不默认为零或任意值",
+        "每项字段能回到原文且保存人工修订",
+        "未经确认的候选不写成已确认业务事实"
+      ],
+      "match_groups": [
+        [
+          "合同",
+          "票据",
+          "发票",
+          "扫描件",
+          "扫描",
+          "文档",
+          "PDF",
+          "pdf",
+          "单据"
+        ],
+        [
+          "提取",
+          "抽取",
+          "识别",
+          "录入",
+          "摘出来",
+          "填到",
+          "填表"
+        ]
+      ],
+      "capabilities": [
+        "cap-domain-document-extraction",
+        "cap-domain-forms-state",
+        "cap-domain-persistence"
+      ],
+      "technologies": [
+        "tech-pypdf",
+        "tech-docling",
+        "tech-paddleocr"
+      ],
+      "template_ids": [
+        "template-document-extraction",
+        "template-data-contract",
+        "template-acceptance"
+      ],
+      "reuse_first": "先检查现有上传、解析、表单与存储能力，复用足够的部分；抽取任务不默认需要RAG或向量库。",
+      "decision_boundary": "先区分原生提取、OCR、版面、字段语义与确认入库；候选需按文件样本、目标版本、许可与部署核查。",
+      "technology_roles": {
+        "tech-pypdf": "原生PDF文字读取候选，不代替OCR或业务字段确认。",
+        "tech-docling": "需要版面和结构表示时评估；输出仍需映射为业务字段。",
+        "tech-paddleocr": "扫描/拍照需要OCR时评估具体模块和模型，不默认安装全部体系。"
+      },
+      "composition_rule": "先选原件解析路线，再组合字段校验、人工复核与保存；这三项不是同职责替代品，也不是全部必装。"
+    }
+  ]
+}

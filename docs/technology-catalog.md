@@ -1,0 +1,184 @@
+# 技术卡片索引
+
+全部为条件性候选；状态与来源以目录为准，不代表安装、推荐或实测。
+
+- [Ant Design](../knowledge/technologies/tech-antd.md) — 提供表格、表单和弹窗等界面组件。
+- [Babylon.js](../knowledge/technologies/tech-babylonjs.md) — 三维渲染和交互场景工具。
+- [Blender](../knowledge/technologies/tech-blender.md) — 建模、材质、动画与离线渲染。
+- [Chronos](../knowledge/technologies/tech-chronos.md) — 使用预训练模型进行时间序列预测。
+- [D3](../knowledge/technologies/tech-d3.md) — 数据映射、比例尺与自定义可视化。
+- [deck.gl](../knowledge/technologies/tech-deckgl.md) — 以图层显示大量地理或空间数据。
+- [Django](../knowledge/technologies/tech-django.md) — 提供 ORM、管理后台与 Web 应用基础。
+- [Docker](../knowledge/technologies/tech-docker.md) — 打包应用运行环境和依赖。
+- [DuckDB](../knowledge/technologies/tech-duckdb.md) — 以 SQL 分析本地表格与列式文件。
+- [Apache ECharts](../knowledge/technologies/tech-echarts.md) — 交互式折线、漏斗、桑基和其他统计图。
+- [FastAPI](../knowledge/technologies/tech-fastapi.md) — 定义 HTTP 接口、请求校验与接口文档。
+- [FFmpeg](../knowledge/technologies/tech-ffmpeg.md) — 转码、封装、滤镜与流媒体处理。
+- [AntV G2](../knowledge/technologies/tech-g2.md) — 以图形语法组合数据可视化。
+- [Godot](../knowledge/technologies/tech-godot.md) — 组织场景、交互和实时运行逻辑。
+- [Keycloak](../knowledge/technologies/tech-keycloak.md) — 集中登录、身份联邦与标准认证。
+- [LangGraph](../knowledge/technologies/tech-langgraph.md) — 组织状态、节点、分支与持久化执行。
+- [LangSmith](../knowledge/technologies/tech-langsmith.md) — 追踪模型应用并组织评估。
+- [LightGBM](../knowledge/technologies/tech-lightgbm.md) — 结构化特征的分类与回归。
+- [LlamaIndex](../knowledge/technologies/tech-llamaindex.md) — 组织文档接入、索引和检索应用。
+- [MapLibre GL JS](../knowledge/technologies/tech-maplibre.md) — 交互式矢量地图与地图样式。
+- [Meilisearch](../knowledge/technologies/tech-meilisearch.md) — 文本搜索、筛选及相关性配置。
+- [n8n](../knowledge/technologies/tech-n8n.md) — 连接业务系统并编排触发与动作。
+- [Neo4j](../knowledge/technologies/tech-neo4j.md) — 存储节点关系并进行图查询。
+- [NestJS](../knowledge/technologies/tech-nestjs.md) — 以模块、依赖注入组织服务端应用。
+- [Next.js](../knowledge/technologies/tech-nextjs.md) — 组织路由、服务端渲染与服务端逻辑。
+- [OpenCV](../knowledge/technologies/tech-opencv.md) — 图像几何、特征与视觉处理。
+- [OR-Tools](../knowledge/technologies/tech-ortools.md) — 约束规划、路由与组合优化。
+- [OpenTelemetry](../knowledge/technologies/tech-otel.md) — 采集和导出链路、指标及日志信号。
+- [pandas](../knowledge/technologies/tech-pandas.md) — 清洗、连接、聚合表格数据。
+- [pgvector](../knowledge/technologies/tech-pgvector.md) — 在数据库内保存和检索向量。
+- [Pillow](../knowledge/technologies/tech-pillow.md) — 图像读写、裁剪、缩放与合成。
+- [Playwright](../knowledge/technologies/tech-playwright.md) — 执行真实浏览器操作并做断言。
+- [PostgreSQL](../knowledge/technologies/tech-postgresql.md) — 事务、结构化存储和 SQL 查询。
+- [Pydantic](../knowledge/technologies/tech-pydantic.md) — 按模型解析并校验运行时数据。
+- [React Flow](../knowledge/technologies/tech-react-flow.md) — 节点拖拽、连线与视口交互。
+- [React](../knowledge/technologies/tech-react.md) — 用组件与状态构建交互界面。
+- [Redis](../knowledge/technologies/tech-redis.md) — 缓存、数据结构与实时访问。
+- [scikit-learn](../knowledge/technologies/tech-scikit-learn.md) — 预处理、传统模型与模型评估。
+- [shadcn/ui](../knowledge/technologies/tech-shadcn.md) — 将可修改的组件源码引入项目。
+- [SQLite](../knowledge/technologies/tech-sqlite.md) — 单文件、本地 SQL 存储。
+- [Supabase](../knowledge/technologies/tech-supabase.md) — 组合数据库、认证、存储等后端能力。
+- [Tailwind CSS](../knowledge/technologies/tech-tailwind.md) — 通过 utility classes 组合样式。
+- [TanStack Table](../knowledge/technologies/tech-tanstack-table.md) — 管理表格列、排序、筛选与行模型。
+- [Temporal](../knowledge/technologies/tech-temporal.md) — 在故障后继续长时运行的工作流。
+- [Three.js](../knowledge/technologies/tech-threejs.md) — 浏览器三维场景、相机与渲染。
+- [Tiptap](../knowledge/technologies/tech-tiptap.md) — 扩展式富文本编辑与文档交互。
+- [TypeScript](../knowledge/technologies/tech-typescript.md) — 在 JavaScript 开发时检查类型约束。
+- [Vite](../knowledge/technologies/tech-vite.md) — 启动开发服务器并构建前端资源。
+- [Vitest](../knowledge/technologies/tech-vitest.md) — 运行单元与集成测试。
+- [Vue](../knowledge/technologies/tech-vue.md) — 用模板、响应式状态与组件构建页面。
+- [Svelte](../knowledge/technologies/tech-svelte.md) — 用组件和编译机制构建交互页面。
+- [Astro](../knowledge/technologies/tech-astro.md) — 组织内容页面并按需加入交互组件。
+- [Nuxt](../knowledge/technologies/tech-nuxt.md) — 基于 Vue 组织路由、渲染和服务端能力。
+- [Angular](../knowledge/technologies/tech-angular.md) — 提供组件、依赖注入和应用组织约定。
+- [Radix Primitives](../knowledge/technologies/tech-radix.md) — 构建对话框、菜单等基础交互。
+- [Mantine](../knowledge/technologies/tech-mantine.md) — 提供表单、布局和交互组件。
+- [MUI](../knowledge/technologies/tech-mui.md) — 提供 Material 风格组件及相关产品。
+- [React Hook Form](../knowledge/technologies/tech-react-hook-form.md) — 管理输入、校验和表单提交状态。
+- [Zod](../knowledge/technologies/tech-zod.md) — 校验运行时数据并推导类型。
+- [Zustand](../knowledge/technologies/tech-zustand.md) — 在组件间组织共享客户端状态。
+- [TanStack Query](../knowledge/technologies/tech-tanstack-query.md) — 管理异步数据获取、缓存与失效。
+- [AG Grid](../knowledge/technologies/tech-ag-grid.md) — 提供复杂数据表格交互。
+- [Monaco Editor](../knowledge/technologies/tech-monaco.md) — 提供代码编辑、语法与语言服务接入。
+- [CodeMirror](../knowledge/technologies/tech-codemirror.md) — 组合代码编辑与语言扩展。2026-10-16 读取的 GitHub 仓库 README 声明开发仓库已迁到 code.haverbeke.berlin；该 GitHub 地址保留为历史入口。正式维护与 issue 核查应沿官方迁移地址进行，不凭旧仓库活跃度判定项目停滞。
+- [Lexical](../knowledge/technologies/tech-lexical.md) — 组织编辑器状态、节点与扩展。
+- [Yjs](../knowledge/technologies/tech-yjs.md) — 基于 CRDT 同步共享文档状态。
+- [tldraw](../knowledge/technologies/tech-tldraw.md) — 嵌入可扩展的绘图与白板交互。
+- [Excalidraw](../knowledge/technologies/tech-excalidraw.md) — 绘制图形、关系示意与白板内容。
+- [React Native](../knowledge/technologies/tech-react-native.md) — 用 React 思路开发移动原生界面。
+- [Expo](../knowledge/technologies/tech-expo.md) — 简化移动应用开发、构建和发布流程。
+- [Flutter](../knowledge/technologies/tech-flutter.md) — 使用 Dart 构建多平台应用界面。
+- [Tauri](../knowledge/technologies/tech-tauri.md) — 组合 Web 前端与原生应用能力。
+- [Electron](../knowledge/technologies/tech-electron.md) — 用 Chromium 与 Node.js 构建桌面应用。
+- [Express](../knowledge/technologies/tech-express.md) — 组织 HTTP 路由和中间件。
+- [Fastify](../knowledge/technologies/tech-fastify.md) — 组织插件、路由和 schema 校验。
+- [Hono](../knowledge/technologies/tech-hono.md) — 在多种 JS 运行时组织 HTTP 服务。
+- [Spring Boot](../knowledge/technologies/tech-spring-boot.md) — 基于 Spring 组织服务和运行配置。
+- [Gin](../knowledge/technologies/tech-gin.md) — 组织 Go 服务的路由和中间件。
+- [GraphQL.js](../knowledge/technologies/tech-graphql.md) — 按 schema 提供可选择字段的查询接口。
+- [gRPC](../knowledge/technologies/tech-grpc.md) — 通过服务定义和代码生成进行服务间调用。
+- [tRPC](../knowledge/technologies/tech-trpc.md) — 连接同属 TypeScript 体系的客户端与服务。
+- [SQLAlchemy](../knowledge/technologies/tech-sqlalchemy.md) — 组织数据库映射、会话和 SQL 访问。
+- [Prisma ORM](../knowledge/technologies/tech-prisma.md) — 通过 schema、客户端和迁移组织数据访问。2026-10-16 读取的仓库 README 同时说明既有版本分支与新一代候选发布线。不能将 HEAD 或候选发布自动当成既有项目该升级的稳定版本；先固定本项目目标代际、运行时和迁移方案。未核验候选发布的全部兼容与支持承诺。
+- [Drizzle ORM](../knowledge/technologies/tech-drizzle.md) — 按接近 SQL 的方式组织类型化查询。
+- [Elasticsearch](../knowledge/technologies/tech-elasticsearch.md) — 索引文档并执行全文搜索和聚合。
+- [OpenSearch](../knowledge/technologies/tech-opensearch.md) — 提供文档检索、聚合和分析能力。
+- [Qdrant](../knowledge/technologies/tech-qdrant.md) — 向量相似度检索与元数据过滤。
+- [Milvus](../knowledge/technologies/tech-milvus.md) — 管理向量索引与相似性搜索。
+- [MongoDB](../knowledge/technologies/tech-mongodb.md) — 用文档模型存储和查询数据。
+- [ClickHouse](../knowledge/technologies/tech-clickhouse.md) — 大规模聚合与分析查询。
+- [Polars](../knowledge/technologies/tech-polars.md) — 表达表格数据变换与分析。
+- [dbt（版本与发行线需区分）](../knowledge/technologies/tech-dbt.md) — 把 SQL 转换组织成可依赖、测试的模型。2026-10-16 读取的原官方仓库入口 README 区分 v1 分支与 Rust 重写的新主线，并说明源码与产品发行许可可能不同。选型必须先确定代际、发行版及适配器，不能沿用所有 dbt 都依赖 Python 的假设。这里记录的是 README 声明，未完成目标版本测试与许可全文审计。
+- [Apache Airflow](../knowledge/technologies/tech-airflow.md) — 按依赖与调度组织数据任务。
+- [Apache Kafka](../knowledge/technologies/tech-kafka.md) — 保留事件流并供消费者处理和重放。
+- [RabbitMQ](../knowledge/technologies/tech-rabbitmq.md) — 将消息路由并交付给消费者。
+- [MinIO](../knowledge/technologies/tech-minio.md) — 通过对象接口存放文件与二进制数据。2026-10-16 读取的官方仓库 README 顶部明确声明该仓库不再维护，并指向 AIStor 等其他发行路径；同时记载社区源码分发和旧二进制限制。不能再把历史 MinIO 社区仓库当作默认的维护中候选。对新项目限制使用该历史路线；需要明确维护责任、目标发行包与许可，优先另查可维护的对象存储路径。此为官方当日声明，不是本地运维测评。
+- [Celery](../knowledge/technologies/tech-celery.md) — 在 Worker 中执行异步任务。
+- [BullMQ](../knowledge/technologies/tech-bullmq.md) — 管理后台任务、重试和调度。
+- [NGINX](../knowledge/technologies/tech-nginx.md) — 转发请求、提供静态资源和终止 TLS。
+- [Caddy](../knowledge/technologies/tech-caddy.md) — 组织 HTTP 服务并管理 HTTPS。
+- [Kubernetes](../knowledge/technologies/tech-kubernetes.md) — 调度和管理容器工作负载。
+- [OpenTofu](../knowledge/technologies/tech-opentofu.md) — 声明并管理基础设施资源状态。
+- [Ansible](../knowledge/technologies/tech-ansible.md) — 批量配置主机和执行运维任务。
+- [Prometheus](../knowledge/technologies/tech-prometheus.md) — 抓取、存储和查询时间序列指标。
+- [Grafana](../knowledge/technologies/tech-grafana.md) — 连接数据源制作监控面板。
+- [Sentry](../knowledge/technologies/tech-sentry.md) — 采集应用错误、上下文和性能信号。
+- [GitHub Actions](../knowledge/technologies/tech-github-actions.md) — 根据仓库事件执行构建测试与自动化。所列仓库是 Runner 实现，不是托管服务套餐与权限规则的完整依据；费用、保留时间及工作流权限需查对应服务文档。
+- [k6](../knowledge/technologies/tech-k6.md) — 以脚本施加请求负载并观察指标。
+- [axe-core](../knowledge/technologies/tech-axe-core.md) — 自动检查部分网页可访问性规则。自动化规则只覆盖部分无障碍问题；关键任务还需键盘与读屏等人工检查，不能以零告警宣称完整合规。
+- [Ollama](../knowledge/technologies/tech-ollama.md) — 在本机或服务端运行模型并提供调用接口。
+- [vLLM](../knowledge/technologies/tech-vllm.md) — 组织模型推理和服务端吞吐。
+- [Transformers](../knowledge/technologies/tech-transformers.md) — 加载不同任务的预训练模型。
+- [Sentence Transformers](../knowledge/technologies/tech-sentence-transformers.md) — 生成语义向量或训练相关模型。
+- [LiteLLM](../knowledge/technologies/tech-litellm.md) — 统一部分供应商调用接口和网关能力。
+- [promptfoo](../knowledge/technologies/tech-promptfoo.md) — 批量比较提示与模型输出并运行检查。
+- [Ragas](../knowledge/technologies/tech-ragas.md) — 组织检索和生成任务的评估指标。
+- [Remotion](../knowledge/technologies/tech-remotion.md) — 用 React 组件组织视频画面和渲染。
+- [Mermaid](../knowledge/technologies/tech-mermaid.md) — 把文本描述渲染为流程和关系图。
+- [Typst](../knowledge/technologies/tech-typst.md) — 将结构化文本编排为文档。
+- [Pandoc](../knowledge/technologies/tech-pandoc.md) — 在多种标记和文档格式间转换。
+- [Auth.js](../knowledge/technologies/tech-authjs.md) — 为 Web 应用组织登录、会话和身份提供商接入。当日官方README说明 Auth.js 已加入 Better Auth，并建议新项目先考虑该后继路线，特定功能例外需明确。此处保留既有项目入口，不把它当无条件新项目默认；后继路线需另做适配和许可核查。
+- [Casbin](../knowledge/technologies/tech-casbin.md) — 按模型与策略判断访问是否允许。
+- [OpenFGA](../knowledge/technologies/tech-openfga.md) — 根据用户对象关系执行细粒度授权查询。
+- [Open Policy Agent](../knowledge/technologies/tech-opa.md) — 将策略决定从应用或基础设施执行中分离。
+- [Trivy](../knowledge/technologies/tech-trivy.md) — 扫描依赖、镜像与相关配置风险。
+- [OSV-Scanner](../knowledge/technologies/tech-osv-scanner.md) — 依据依赖和漏洞数据发现已知风险。
+- [Gitleaks](../knowledge/technologies/tech-gitleaks.md) — 检测仓库或文件中可能泄露的凭证。当日README称项目功能已完整、后续以安全修补为主，并指向新的开发方向。不能以低功能发布频率简单判为失效，也不能承诺后续新功能支持；使用旧命令的教程还需核查。
+- [Dexie.js](../knowledge/technologies/tech-dexie.md) — 围绕 IndexedDB 组织结构化本地存储。当日README提示 dexie-observable 与 dexie-syncable 等历史同步插件不再维护；该提示不是对 Dexie 核心整体的维护终止结论。核心、本地能力和当前同步产品分别核查。
+- [RxDB](../knowledge/technologies/tech-rxdb.md) — 组织响应式本地数据与复制机制。
+- [localForage](../knowledge/technologies/tech-localforage.md) — 以异步键值接口存储本地数据。
+- [PyMuPDF](../knowledge/technologies/tech-pymupdf.md) — 读取、渲染和操作文档页面及内容。
+- [pypdf](../knowledge/technologies/tech-pypdf.md) — 合并、拆分、读取和变换 PDF。
+- [PDF.js](../knowledge/technologies/tech-pdfjs.md) — 在浏览器中解析显示 PDF。
+- [docx（TypeScript）](../knowledge/technologies/tech-docx-ts.md) — 通过代码生成 DOCX 文档。
+- [python-docx](../knowledge/technologies/tech-python-docx.md) — 读取和修改 DOCX 内容与结构。
+- [Docxtemplater](../knowledge/technologies/tech-docxtemplater.md) — 将数据填入 Office 模板生成文档。
+- [ExcelJS](../knowledge/technologies/tech-exceljs.md) — 读取生成 XLSX 并处理样式和单元格。
+- [SheetJS](../knowledge/technologies/tech-sheetjs.md) — 解析与生成多种电子表格数据。当日README指出源码主仓库已迁到 git.sheetjs.com；GitHub入口是历史/迁移线索。社区、专业能力及实际分发来源分别核查，不凭旧镜像判断维护或版本。
+- [openpyxl](../knowledge/technologies/tech-openpyxl.md) — 操作工作簿单元格、样式与结构。
+- [XlsxWriter](../knowledge/technologies/tech-xlsxwriter.md) — 生成含格式和图表的电子表格。
+- [PptxGenJS](../knowledge/technologies/tech-pptxgenjs.md) — 代码化生成可编辑 PPTX。
+- [python-pptx](../knowledge/technologies/tech-python-pptx.md) — 创建和修改演示文稿对象。
+- [Directus](../knowledge/technologies/tech-directus.md) — 基于数据模型提供管理界面与接口。
+- [Strapi](../knowledge/technologies/tech-strapi.md) — 组织内容模型、编辑流程与 API。
+- [Payload](../knowledge/technologies/tech-payload.md) — 定义内容集合、管理界面和接口。
+- [NocoDB](../knowledge/technologies/tech-nocodb.md) — 用表格视图管理数据并提供协作入口。
+- [Budibase](../knowledge/technologies/tech-budibase.md) — 连接数据源构建表单、管理页与自动化。
+- [Appsmith](../knowledge/technologies/tech-appsmith.md) — 用组件、查询和逻辑连接业务数据。
+- [Docling](../knowledge/technologies/tech-docling.md) — 将文档内容与结构转换为可处理表示。
+- [Unstructured](../knowledge/technologies/tech-unstructured.md) — 按格式解析和划分文档元素。
+- [Tesseract OCR](../knowledge/technologies/tech-tesseract.md) — 从图像中识别文字。
+- [PaddleOCR](../knowledge/technologies/tech-paddleocr.md) — 提供文字识别及相关文档能力。
+- [PostGIS](../knowledge/technologies/tech-postgis.md) — 空间存储、索引与几何查询。
+- [GeoPandas](../knowledge/technologies/tech-geopandas.md) — 以表格方式处理地理对象和空间连接。
+- [Shapely](../knowledge/technologies/tech-shapely.md) — 处理平面几何对象与空间运算。
+- [Leaflet](../knowledge/technologies/tech-leaflet.md) — 展示瓦片地图与标记等交互。
+- [CesiumJS](../knowledge/technologies/tech-cesium.md) — 展示地球、地形与地理空间三维数据。
+- [Cytoscape.js](../knowledge/technologies/tech-cytoscape.md) — 展示并操作节点关系网络。
+- [Sigma.js](../knowledge/technologies/tech-sigma.md) — 显示和交互较大关系网络。
+- [Graphology](../knowledge/technologies/tech-graphology.md) — 组织图结构与相关算法能力。
+- [ELK.js](../knowledge/technologies/tech-elkjs.md) — 为节点边计算布局位置。
+- [Dagre](../knowledge/technologies/tech-dagre.md) — 计算分层图的节点和边布局。
+- [PixiJS](../knowledge/technologies/tech-pixijs.md) — 组织高交互二维图形与精灵渲染。
+- [Konva](../knowledge/technologies/tech-konva.md) — 组织形状、图层、事件与交互。
+- [Fabric.js](../knowledge/technologies/tech-fabric.md) — 提供对象化图形交互与序列化。
+- [Lottie Web](../knowledge/technologies/tech-lottie.md) — 在Web播放受支持的动画描述。
+- [GSAP](../knowledge/technologies/tech-gsap.md) — 编排时间线和界面动画。
+- [Motion](../knowledge/technologies/tech-motion.md) — 实现交互与布局等界面动画。
+- [Socket.IO](../knowledge/technologies/tech-socketio.md) — 在客户端与服务端交换事件。
+- [LiveKit](../knowledge/technologies/tech-livekit.md) — 提供房间、媒体传输及相关SDK能力。
+- [mediasoup](../knowledge/technologies/tech-mediasoup.md) — 提供低层媒体转发能力。
+- [PydanticAI](../knowledge/technologies/tech-pydanticai.md) — 组织模型、工具与结构化输出。
+- [smolagents](../knowledge/technologies/tech-smolagents.md) — 组织模型驱动工具使用等任务。
+- [DSPy](../knowledge/technologies/tech-dspy.md) — 以模块和评估组织模型程序及优化。
+- [Haystack](../knowledge/technologies/tech-haystack.md) — 组合检索、生成与相关组件。
+- [Semantic Kernel](../knowledge/technologies/tech-semantic-kernel.md) — 把模型与函数插件等应用能力组合。当日官方README说明 Microsoft Agent Framework 是 Semantic Kernel 的后继方向。这里只保留历史路线及迁移入口；新项目需比较当前后继，既有应用不自动迁移，也未复核其支持承诺。
+- [React Router](../knowledge/technologies/tech-react-router.md) — 组织路由、数据加载和相关框架能力。
+- [SvelteKit](../knowledge/technologies/tech-sveltekit.md) — 组织路由、渲染和部署适配。
+- [Solid](../knowledge/technologies/tech-solidjs.md) — 用组件与细粒度响应式组织界面。
+- [Ajv](../knowledge/technologies/tech-ajv.md) — 对JSON数据按schema执行运行时校验。

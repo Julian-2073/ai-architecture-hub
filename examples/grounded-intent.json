@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "goals": [
+    {
+      "scenario_id": "scenario-interactive-3d",
+      "source_quote": "绕着商品瞧瞧",
+      "certainty": "inferred"
+    }
+  ],
+  "known_constraints": [],
+  "excluded_scenarios": [],
+  "open_questions": [
+    "希望自己转动查看，还是播放拍好的展示？",
+    "已有模型或照片素材吗？"
+  ]
+}

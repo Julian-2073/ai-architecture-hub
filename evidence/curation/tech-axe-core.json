@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "record_id": "tech-axe-core",
+  "kind": "inference",
+  "edition": "community-v0.1.0",
+  "exported_at": "2026-10-17",
+  "summary": "作者编制的选型建议与知识导航，公开版不附私人项目材料或第三方网页正文。",
+  "references": [
+    {
+      "url": "https://raw.githubusercontent.com/dequelabs/axe-core/develop/README.md",
+      "previously_recorded_at": "2026-10-16",
+      "source_date": null,
+      "target_version": "expanded-toolkit 2026-10-16; no target runtime version",
+      "boundary": "仅保留原登记的外部参考入口；本社区版未重新联网核验，不分发原始网页正文。"
+    },
+    {
+      "url": "https://github.com/dequelabs/axe-core",
+      "boundary": "正文中的外部参考入口；本次发布未重新核验。"
+    }
+  ],
+  "verification_boundary": "仅保留知识组织、适用性判断和参考链接；目标版本、许可、维护状态与项目效果需在具体使用时核查。所有执行验证均未执行。"
+}

@@ -1,0 +1,15 @@
+{
+  "edition": "community-v0.1.0",
+  "counts": {
+    "capability": 52,
+    "technology": 180,
+    "template": 26,
+    "scenario": 45
+  },
+  "implementation_paths": 5,
+  "private_history_included": false,
+  "private_project_evidence_included": false,
+  "third_party_webpage_bodies_included": false,
+  "validation_policy": "公开版候选统一待复核；原私人知识库未修改。",
+  "source_snapshot_scope": "仅公开版编制说明与外部参考登记，非第三方原文快照。"
+}
