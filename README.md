@@ -88,7 +88,7 @@ python3 -m unittest discover -s tests -v
 python3 scripts/install_codex_skill.py --skills-dir ~/.codex/skills
 ```
 
-安装器仅写入一个名为 `architecture-hub` 的 Skill 文件；目录已存在则停止，默认不覆盖。仓库需要保留在安装时的位置。安装后新建聊天核验触发，详见[接入说明](docs/codex-integration.md)。
+安装器仅写入一个名为 `architecture-hub` 的 Skill 目录（含技能正文和本机路径配置）；目录已存在则停止，默认不覆盖。仓库需要保留在安装时的位置。安装后新建聊天核验触发，详见[接入说明](docs/codex-integration.md)。
 
 ## 如何使用检索结果
 

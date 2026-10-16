@@ -21,3 +21,5 @@
 ## 0.1.1 修复
 
 首次远端检查发现北京时间与 UTC 跨日导致严格日期检查误报；已由目录的显式 UTC 偏移解决，新增回归测试。未修改来源实际日期，也未关闭未来日期检查。公开远端 CI 的最终结果见 Actions；原失败运行保留。
+
+远端复验：提交 `6fc2818e51f273e75e182c3fa3a6fd136859dcbb` 在 Python 3.10、3.12、3.13 上的严格目录检查和 53 项测试全部通过：[GitHub Actions 结果](https://github.com/Julian-2073/ai-architecture-hub/actions/runs/38940704942)。此结果只覆盖该提交；后续提交结果到 Actions 核对。
