@@ -2,7 +2,7 @@
 """Local, read-only knowledge search, business discovery and provenance validation. Python >=3.10."""
 import argparse
 from collections import Counter
-from datetime import date
+from datetime import date, datetime, timezone, timedelta
 import hashlib
 import json
 from pathlib import Path
@@ -111,6 +111,22 @@ def search(root, data, query, args):
             'total_matches': len(results), 'results': results[:args.limit]}
 
 
+def catalog_today(data, now=None):
+    """Compare date-only records using their declared recording offset, not host TZ."""
+    offset = data.get('date_utc_offset')
+    if offset is None:
+        return date.today()
+    match = re.fullmatch(r'([+-])(\d{2}):(\d{2})', offset) if isinstance(offset, str) else None
+    if not match or int(match[2]) > 23 or int(match[3]) > 59:
+        raise ValueError('date_utc_offset 必须是有效的 ±HH:MM')
+    minutes = (int(match[2]) * 60 + int(match[3])) * (1 if match[1] == '+' else -1)
+    zone = timezone(timedelta(minutes=minutes))
+    current = now if now is not None else datetime.now(timezone.utc)
+    if current.tzinfo is None:
+        raise ValueError('用于日期校验的时间必须包含时区')
+    return current.astimezone(zone).date()
+
+
 def validate(root, data, check_origins=False):
     errors, warnings = [], []
     records, sources = data['records'], data['sources']
@@ -126,13 +142,13 @@ def validate(root, data, check_origins=False):
                 errors.append(f'{label} ID 重复: {key}')
     record_map = {r.get('id'): r for r in records}
     source_map = {s.get('id'): s for s in sources}
-    today = date.today()
+    today = catalog_today(data)
 
     def valid_date(value, context):
         try:
             parsed = date.fromisoformat(value)
             if parsed > today:
-                warnings.append(f'{context}: 日期晚于本机日期 {value}')
+                warnings.append(f'{context}: 日期晚于目录时区的当前日期 {value}')
         except (ValueError, TypeError):
             errors.append(f'{context}: 日期无效 {value}')
 
